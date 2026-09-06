@@ -29,7 +29,69 @@ const illustrations: Artwork[] = [
     year: "2023",
     technique: "Digitale Illustration",
   },
-  // Weitere Illustrationen hier hinzufügen
+  {
+    id: 3,
+    title: "Kirschen",
+    description:
+      "Ein Kind greift nach Kirschen, in kühlen Blautönen gemalt. Eine ruhige, verträumte Momentaufnahme.",
+    image: "/images/illustration-kirschen.jpg",
+    year: "2024",
+    technique: "Aquarell & Digital",
+  },
+  {
+    id: 4,
+    title: "Skizze in Bewegung",
+    description:
+      "Zwei skizzierte Figuren vor einem lebhaften, farbenfrohen Hintergrund. Spontane Linien treffen auf warme Farbflächen.",
+    image: "/images/illustration-skizze-figuren.jpg",
+    year: "2024",
+    technique: "Mischtechnik",
+  },
+  {
+    id: 5,
+    title: "Mit Hund",
+    description:
+      "Ein Mädchen liest, während ein gefleckter Hund neugierig danebensteht. Zarte Tusche- und Aquarelltöne in Grau.",
+    image: "/images/illustration-hund-maedchen.jpg",
+    year: "2024",
+    technique: "Tusche & Aquarell",
+  },
+  {
+    id: 6,
+    title: "Unter Hasen",
+    description:
+      "Zwei Kinder inmitten einer Schar von Hasen, in dunklem Grün getaucht. Eine stille, geheimnisvolle Szene.",
+    image: "/images/illustration-hasen.jpg",
+    year: "2024",
+    technique: "Aquarell & Digital",
+  },
+  {
+    id: 7,
+    title: "Verbunden",
+    description:
+      "Vier Figuren, verbunden durch ein rotes Band – eine verspielte Studie über Nähe und Bewegung.",
+    image: "/images/illustration-tanz.png",
+    year: "2024",
+    technique: "Federzeichnung",
+  },
+  {
+    id: 8,
+    title: "Mädchen mit Leopard",
+    description:
+      "Ein Mädchen wandert an der Seite eines großen, gepunkteten Leoparden. Sanftes Rosa trägt die Szene.",
+    image: "/images/illustration-leopard.png",
+    year: "2024",
+    technique: "Aquarell & Digital",
+  },
+  {
+    id: 9,
+    title: "Giraffenausflug",
+    description:
+      "Eine Giraffe auf einer Spazierfahrt im Cabrio, umgeben von zarten Pflanzenmotiven in warmem Gelb.",
+    image: "/images/illustration-giraffe.png",
+    year: "2024",
+    technique: "Aquarell & Digital",
+  },
 ];
 
 export default function Illustration() {

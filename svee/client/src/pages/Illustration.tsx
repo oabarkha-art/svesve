@@ -1,11 +1,9 @@
-import { useState } from "react";
 import Layout from "@/components/Layout";
 
 import { illustrations } from "@/data/artworks";
 import { Link } from "wouter";
 
 export default function Illustration() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
     <Layout>
@@ -14,7 +12,7 @@ export default function Illustration() {
         <p className="text-sm tracking-widest uppercase text-primary mb-3 font-medium">
           Kategorie
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+        <h2 className="text-4xl md:text-5xl font-medium text-foreground mb-4">
           Illustration
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
@@ -71,13 +69,11 @@ export default function Illustration() {
             <p className="text-lg">Werke werden demnächst hinzugefügt.</p>
           </div>
         ) : (
-          <div className="gallery-grid">
+          <div className="gallery-masonry">
             {illustrations.map((artwork) => (
               <div
                 key={artwork.id}
                 className="artwork-card"
-                onMouseEnter={() => setHoveredId(artwork.id)}
-                onMouseLeave={() => setHoveredId(null)}
               >
                 {/* Artwork Image */}
                 <div className="overflow-hidden rounded-sm bg-muted">
@@ -86,9 +82,7 @@ export default function Illustration() {
                     alt={artwork.title}
                     loading="lazy"
                     decoding="async"
-                    className={`artwork-image artwork-hover ${
-                      hoveredId === artwork.id ? "scale-105" : ""
-                    }`}
+                    className="artwork-image"
                   />
                 </div>
 
@@ -96,12 +90,8 @@ export default function Illustration() {
                 <div className="artwork-info">
                   <div>
                     <h3 className="artwork-title">{artwork.title}</h3>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {artwork.year ? `${artwork.year} — ` : ""}
-                      {artwork.technique}
-                    </p>
+                    {artwork.dimensions && <p className="text-sm text-muted-foreground mt-2">{artwork.dimensions}</p>}
                   </div>
-                  <p className="artwork-description">{artwork.description}</p>
                   <Link
                     href={`/prints?werk=${artwork.id}`}
                     className="text-primary underline underline-offset-4 text-sm"

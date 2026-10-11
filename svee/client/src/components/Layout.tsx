@@ -1,3 +1,4 @@
+import { inquiryLink } from "@/lib/contact";
 import { Link, useLocation } from "wouter";
 import { Instagram } from "lucide-react";
 import Cart from "@/components/Cart";
@@ -82,7 +83,7 @@ export default function Layout({ children }: LayoutProps) {
             </p>
             <div className="flex items-center gap-6">
               <a
-                href="mailto:abarkha@outlook.com"
+                href={inquiryLink()}
                 className="text-sm text-[#F8F7F3] hover:underline transition-colors"
               >
                 E-Mail

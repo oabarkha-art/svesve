@@ -1,3 +1,4 @@
+import { artistEmail, inquiryLink } from "@/lib/contact";
 import { Mail, Instagram } from "lucide-react";
 import Layout from "@/components/Layout";
 export default function Contact() {
@@ -13,10 +14,10 @@ export default function Contact() {
         </p>
         <a
           className="shop-button inline-flex items-center gap-3"
-          href="mailto:abarkha@outlook.com"
+          href={inquiryLink()}
         >
           <Mail size={18} />
-          abarkha@outlook.com
+          {artistEmail}
         </a>
         <p className="mt-8 text-muted-foreground">Deutschland</p>
         <div className="flex flex-wrap gap-6 mt-8">

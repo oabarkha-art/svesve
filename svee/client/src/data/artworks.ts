@@ -6,6 +6,8 @@ export interface Artwork {
   image: string;
   year?: string;
   technique: string;
+  dimensions?: string;
+  sold?: boolean;
 }
 
 export const paintings: Artwork[] = [
@@ -20,6 +22,7 @@ export const paintings: Artwork[] = [
   },
   {
     id: "painting-der-spiegel",
+    sold: true,
     category: "malerei",
     title: "Der Spiegel",
     description:
@@ -37,6 +40,7 @@ export const paintings: Artwork[] = [
   },
   {
     id: "painting-verschmelzung",
+    sold: true,
     category: "malerei",
     title: "Verschmelzung",
     description:
@@ -55,6 +59,7 @@ export const paintings: Artwork[] = [
   },
   {
     id: "painting-am-strand",
+    sold: true,
     category: "malerei",
     title: "Am Strand",
     description:
@@ -73,6 +78,7 @@ export const paintings: Artwork[] = [
   },
   {
     id: "painting-sami",
+    sold: true,
     category: "malerei",
     title: "Sami",
     description: "Ein ausdrucksstarkes Porträt in warmen Farben.",
@@ -80,29 +86,17 @@ export const paintings: Artwork[] = [
     technique: "Öl auf Leinwand",
     year: "2026",
   },
+  {
+    id: "painting-spaghetti",
+    category: "malerei",
+    title: "Spaghetti",
+    description: "",
+    image: "/images/painting-spaghetti.webp",
+    technique: "Öl auf Leinwand",
+  },
 ];
 
 export const illustrations: Artwork[] = [
-  {
-    id: "illustration-1",
-    category: "illustration",
-    title: "Stille Natur",
-    description:
-      "Eine zarte Illustration der Natur mit Wasserfarben. Botanische Elemente in sanften, gedämpften Farben.",
-    image: "/images/illustration-nature.webp",
-    year: "2024",
-    technique: "Aquarell & Digital",
-  },
-  {
-    id: "illustration-2",
-    category: "illustration",
-    title: "Porträt",
-    description:
-      "Eine künstlerische Porträt-Illustration mit warmen, gedämpften Tönen. Elegante und ausdrucksstarke Linienführung.",
-    image: "/images/illustration-portrait.webp",
-    year: "2023",
-    technique: "Digitale Illustration",
-  },
   {
     id: "illustration-3",
     category: "illustration",

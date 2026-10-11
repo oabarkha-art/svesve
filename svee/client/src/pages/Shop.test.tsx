@@ -37,14 +37,14 @@ function fillForm() {
   fireEvent.click(screen.getByRole("checkbox"));
 }
 describe("shop interaction", () => {
-  it("filters all 17 artworks by painting and illustration", async () => {
+  it("filters all 16 artworks by painting and illustration", async () => {
     const user = userEvent.setup();
     show(<Prints />);
-    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(17);
+    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(16);
     await user.click(screen.getByRole("button", { name: "Malerei" }));
-    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(8);
-    await user.click(screen.getByRole("button", { name: "Illustration" }));
     expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(9);
+    await user.click(screen.getByRole("button", { name: "Illustration" }));
+    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(7);
   });
   it("adds selected formats and keeps quantities in browser storage", async () => {
     const user = userEvent.setup();

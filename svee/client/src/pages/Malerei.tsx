@@ -1,39 +1,11 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 
-interface Artwork {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  year: string;
-  technique: string;
-}
-
-const paintings: Artwork[] = [
-  {
-    id: 1,
-    title: "Fließende Formen",
-    description:
-      "Eine abstrakte Komposition mit fließenden Formen in warmen Erdtönen. Die Schichten schaffen Tiefe und Bewegung.",
-    image: "/images/hero-abstract-art.png",
-    year: "2024",
-    technique: "Acryl auf Leinwand",
-  },
-  {
-    id: 2,
-    title: "Goldene Stunde",
-    description:
-      "Eine expressive Landschaftsmalerei zur Sonnenuntergangszeit. Moderne Impressionist-Technik mit sichtbaren Pinselstrichen.",
-    image: "/images/painting-landscape.png",
-    year: "2023",
-    technique: "Öl auf Leinwand",
-  },
-  // Weitere Gemälde hier hinzufügen
-];
+import { paintings } from "@/data/artworks";
+import { Link } from "wouter";
 
 export default function Malerei() {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
     <Layout>
@@ -46,8 +18,12 @@ export default function Malerei() {
           Malerei
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-          Eine Auswahl meiner Gemälde in verschiedenen Techniken – von
-          expressiver Acrylmalerei bis zu klassischen Ölgemälden.
+          Abends sitze ich meistens in meinem kleinen Atelier und male. Ich
+          benutze dafür Ölfarben, ein Material, das eine lange Geschichte hat.
+          Es ist warm und weich, fügt sich ineinander und gibt den Bildern
+          vertraute Tiefe. Meine Motive erzählen von Menschen und ihren
+          Beziehungen zueinander und zu der fantastischen Welt, in der wir
+          leben.
         </p>
       </section>
 
@@ -76,6 +52,8 @@ export default function Malerei() {
                   <img
                     src={artwork.image}
                     alt={artwork.title}
+                    loading="lazy"
+                    decoding="async"
                     className={`artwork-image artwork-hover ${
                       hoveredId === artwork.id ? "scale-105" : ""
                     }`}
@@ -87,10 +65,17 @@ export default function Malerei() {
                   <div>
                     <h3 className="artwork-title">{artwork.title}</h3>
                     <p className="text-xs text-muted-foreground mt-1">
-                      {artwork.year} — {artwork.technique}
+                      {artwork.year ? `${artwork.year} — ` : ""}
+                      {artwork.technique}
                     </p>
                   </div>
                   <p className="artwork-description">{artwork.description}</p>
+                  <Link
+                    href={`/prints?werk=${artwork.id}`}
+                    className="text-primary underline underline-offset-4 text-sm"
+                  >
+                    Als Print entdecken →
+                  </Link>
                 </div>
               </div>
             ))}
@@ -98,6 +83,20 @@ export default function Malerei() {
         )}
       </section>
 
+      <section className="container py-10 max-w-3xl">
+        <h3 className="text-2xl mb-4">Ein Porträt für dich</h3>
+        <p className="text-muted-foreground mb-6">
+          Du wünschst dir ein individuell handgemaltes Porträt als Geschenk für
+          eine Hochzeit oder zu Weihnachten? Schreib mir von deiner Vision! Ich
+          male mit Ölfarben auf Leinwand.
+        </p>
+        <a
+          className="shop-button"
+          href="mailto:abarkha@outlook.com?subject=Anfrage%20Portr%C3%A4t"
+        >
+          Gemälde anfragen
+        </a>
+      </section>
       {/* Bottom spacing */}
       <div className="py-16" />
     </Layout>

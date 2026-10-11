@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Instagram } from "lucide-react";
+import Cart from "@/components/Cart";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,6 +10,7 @@ const navLinks = [
   { href: "/", label: "Home" },
   { href: "/malerei", label: "Malerei" },
   { href: "/illustration", label: "Illustration" },
+  { href: "/prints", label: "Prints" },
   { href: "/kontakt", label: "Kontakt" },
 ];
 
@@ -20,7 +22,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Navigation Header */}
       <header className="sticky top-0 bg-background/95 backdrop-blur-sm border-b border-border z-50">
         <div className="container py-5">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
             {/* Logo / Name */}
             <Link href="/">
               <div>
@@ -34,7 +36,10 @@ export default function Layout({ children }: LayoutProps) {
             </Link>
 
             {/* Navigation */}
-            <nav className="flex items-center gap-6 md:gap-8">
+            <nav
+              className="flex flex-wrap items-center gap-4 md:gap-6"
+              aria-label="Hauptnavigation"
+            >
               {navLinks.map((link) => {
                 const isActive =
                   link.href === "/"
@@ -54,6 +59,7 @@ export default function Layout({ children }: LayoutProps) {
                   </Link>
                 );
               })}
+              <Cart />
             </nav>
           </div>
         </div>
@@ -63,16 +69,21 @@ export default function Layout({ children }: LayoutProps) {
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-background/50 mt-16">
-        <div className="container py-8">
+      <footer className="border-t border-border bg-[#332626] text-[#F8F7F3] mt-16">
+        <div className="container py-10">
+          <p className="text-xl max-w-2xl mb-8 leading-relaxed">
+            Wenn du mit mir zusammenarbeiten oder mehr von meiner Arbeit
+            entdecken möchtest, schreib mir. Ich freue mich auf deine Nachricht.
+          </p>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
-              © 2024 Svea Fritzenkötter. Alle Rechte vorbehalten.
+            <p className="text-sm text-[#e2d4ce]">
+              © {new Date().getFullYear()} Svea Fritzenkötter. Alle Rechte
+              vorbehalten.
             </p>
             <div className="flex items-center gap-6">
               <a
                 href="mailto:abarkha@outlook.com"
-                className="text-sm text-foreground hover:text-primary transition-colors"
+                className="text-sm text-[#F8F7F3] hover:underline transition-colors"
               >
                 E-Mail
               </a>
@@ -80,7 +91,7 @@ export default function Layout({ children }: LayoutProps) {
                 href="https://www.instagram.com/svea_syy/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-2 text-sm text-[#F8F7F3] hover:underline transition-colors"
               >
                 <Instagram size={16} />
                 Instagram

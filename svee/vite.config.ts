@@ -1,13 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { fileURLToPath } from "node:url";
 
 // Optional: Nur lokal verwenden
 let localPlugins: any[] = [];
 if (process.env.NODE_ENV !== "production") {
   try {
     const { jsxLocPlugin } = await import("@builder.io/vite-plugin-jsx-loc");
-    const { vitePluginManusRuntime } = await import("vite-plugin-manus-runtime");
+    const { vitePluginManusRuntime } =
+      await import("vite-plugin-manus-runtime");
     localPlugins.push(jsxLocPlugin(), vitePluginManusRuntime());
 
     // Manus Debug Collector lokal aktivieren
@@ -19,7 +21,8 @@ if (process.env.NODE_ENV !== "production") {
         name: "manus-debug-collector",
         configureServer(server: any) {
           const LOG_DIR = path.join(process.cwd(), ".manus-logs");
-          if (!fs.existsSync(LOG_DIR)) fs.mkdirSync(LOG_DIR, { recursive: true });
+          if (!fs.existsSync(LOG_DIR))
+            fs.mkdirSync(LOG_DIR, { recursive: true });
           // Weitere Log-Handler nur lokal...
         },
       };
@@ -39,9 +42,9 @@ export default defineConfig({
   plugins,
   resolve: {
     alias: {
-      "@": "/src",
-      "@shared": "/shared",
-      "@assets": "/attached_assets",
+      "@": fileURLToPath(new URL("./client/src", import.meta.url)),
+      "@shared": fileURLToPath(new URL("./shared", import.meta.url)),
+      "@assets": fileURLToPath(new URL("./attached_assets", import.meta.url)),
     },
   },
   root: "client",

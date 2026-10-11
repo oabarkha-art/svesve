@@ -11,14 +11,11 @@ export default function Home() {
             Portfolio
           </p>
           <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-            Kunst, die
-            <br />
-            bewegt.
+            Hi, ich bin Svea
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-            Willkommen in meinem Portfolio. Ich bin Svea Fritzenkötter –
-            Künstlerin und Illustratorin aus Deutschland. Hier zeige ich eine
-            Auswahl meiner Gemälde und Illustrationen.
+            Ich bin Illustratorin und Malerin. Ich liebe es, fantastische Welten
+            zum Leben zu erwecken. Schön, dass du da bist!
           </p>
           <div className="flex flex-wrap items-center gap-4 mt-10">
             <Link
@@ -44,16 +41,14 @@ export default function Home() {
 
       {/* Category Preview Cards */}
       <section className="container py-16 md:py-20">
-        <h3 className="text-2xl font-bold text-foreground mb-10">
-          Bereiche
-        </h3>
+        <h3 className="text-2xl font-bold text-foreground mb-10">Bereiche</h3>
         <div className="grid md:grid-cols-2 gap-8">
           {/* Malerei Card */}
           <Link href="/malerei">
             <div className="group cursor-pointer">
               <div className="aspect-[4/3] bg-muted rounded-sm overflow-hidden mb-5">
                 <img
-                  src="/images/painting-landscape.png"
+                  src="/images/painting-seerose.webp"
                   alt="Malerei"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -64,7 +59,7 @@ export default function Home() {
                     Malerei
                   </h4>
                   <p className="text-sm text-muted-foreground mt-1">
-                    Acryl, Öl & Aquarell
+                    Öl auf Leinwand
                   </p>
                 </div>
                 <span className="text-primary text-sm font-medium group-hover:underline">
@@ -79,7 +74,7 @@ export default function Home() {
             <div className="group cursor-pointer">
               <div className="aspect-[4/3] bg-muted rounded-sm overflow-hidden mb-5">
                 <img
-                  src="/images/illustration-nature.png"
+                  src="/images/illustration-nature.webp"
                   alt="Illustration"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -107,14 +102,47 @@ export default function Home() {
         <div className="divider-line" />
       </div>
 
+      <section className="container py-12 grid md:grid-cols-2 gap-12">
+        <div>
+          <p className="eyebrow">Aktuelles</p>
+          <h3 className="text-2xl mb-4">Für meine Lübecker:innen ♡</h3>
+          <p className="text-muted-foreground max-w-xl">
+            Ab dem 20. Oktober ist der diesjährige Zonta Adventskalender mit
+            meinem Motiv erhältlich.
+          </p>
+        </div>
+        <div>
+          <p className="eyebrow">Zusammenarbeit</p>
+          <h3 className="text-2xl mb-4">
+            Einige meiner liebsten Kooperationen
+          </h3>
+          <p className="text-muted-foreground">
+            Zonta Club · Johanniter · GEOMAR Helmholtz-Zentrum für
+            Ozeanforschung
+          </p>
+        </div>
+      </section>
+      <section className="container py-12">
+        <div className="bg-muted/50 p-8 md:p-12 rounded-sm">
+          <h3 className="text-3xl mb-4">
+            Ein Stück meiner Welt für dein Zuhause.
+          </h3>
+          <p className="text-muted-foreground mb-6">
+            Entdecke meine Malerei und Illustrationen als handsignierte Prints.
+          </p>
+          <Link className="shop-button" href="/prints">
+            Prints entdecken →
+          </Link>
+        </div>
+      </section>
       {/* Contact CTA */}
       <section className="container py-16 md:py-20 text-center">
         <h3 className="text-3xl font-bold text-foreground mb-4">
           Interesse an einer Zusammenarbeit?
         </h3>
         <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-          Ob Commission, Ausstellung oder eine andere Anfrage – ich freue mich
-          von Ihnen zu hören.
+          Ob Auftragsarbeit, Ausstellung oder eine andere Anfrage – ich freue
+          mich, von dir zu hören.
         </p>
         <Link
           href="/kontakt"

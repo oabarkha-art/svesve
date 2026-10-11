@@ -84,26 +84,6 @@ export const paintings: Artwork[] = [
 
 export const illustrations: Artwork[] = [
   {
-    id: "illustration-1",
-    category: "illustration",
-    title: "Stille Natur",
-    description:
-      "Eine zarte Illustration der Natur mit Wasserfarben. Botanische Elemente in sanften, gedämpften Farben.",
-    image: "/images/illustration-nature.webp",
-    year: "2024",
-    technique: "Aquarell & Digital",
-  },
-  {
-    id: "illustration-2",
-    category: "illustration",
-    title: "Porträt",
-    description:
-      "Eine künstlerische Porträt-Illustration mit warmen, gedämpften Tönen. Elegante und ausdrucksstarke Linienführung.",
-    image: "/images/illustration-portrait.webp",
-    year: "2023",
-    technique: "Digitale Illustration",
-  },
-  {
     id: "illustration-3",
     category: "illustration",
     title: "Kirschen",

@@ -39,7 +39,7 @@ export default function Malerei() {
             <p className="text-lg">Werke werden demnächst hinzugefügt.</p>
           </div>
         ) : (
-          <div className="gallery-grid">
+          <div className="gallery-grid gallery-grid--masonry">
             {paintings.map((artwork) => (
               <div
                 key={artwork.id}
@@ -92,9 +92,9 @@ export default function Malerei() {
         </p>
         <a
           className="shop-button"
-          href="mailto:abarkha@outlook.com?subject=Anfrage%20Portr%C3%A4t"
+          href="mailto:svea.fritzenkoetter00@gmail.com?subject=Request%20Painting"
         >
-          Gemälde anfragen
+          Request Painting
         </a>
       </section>
       {/* Bottom spacing */}

@@ -8,7 +8,9 @@ export interface Artwork {
   technique: string;
 }
 
-export const paintings: Artwork[] = [
+export type PaintingArtwork = Artwork & { category: "malerei"; status: "sold" | "available" };
+
+export const paintings: PaintingArtwork[] = [
   {
     id: "painting-seerose",
     category: "malerei",
@@ -17,6 +19,7 @@ export const paintings: Artwork[] = [
       "Ein Kind beugt sich über eine Seerose in einer grünen, traumhaften Landschaft.",
     image: "/images/painting-seerose.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
   },
   {
     id: "painting-der-spiegel",
@@ -26,6 +29,7 @@ export const paintings: Artwork[] = [
       "Eine Figur zwischen Spiegel, Baum und einem stillen Innenraum.",
     image: "/images/painting-der-spiegel.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
   },
   {
     id: "painting-am-meer",
@@ -34,6 +38,7 @@ export const paintings: Artwork[] = [
     description: "Ein Blick zum Meer, gerahmt von dunklen Ästen und einer Tür.",
     image: "/images/painting-am-meer.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
   },
   {
     id: "painting-verschmelzung",
@@ -43,6 +48,7 @@ export const paintings: Artwork[] = [
       "Ein dunkles Porträt, in dem Mensch und fantastische Formen ineinanderfließen.",
     image: "/images/painting-verschmelzung.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
   },
   {
     id: "painting-zwischen-den-voegeln",
@@ -52,6 +58,7 @@ export const paintings: Artwork[] = [
       "Vögel, Figuren und architektonische Formen begegnen sich in einer surrealen Welt.",
     image: "/images/painting-zwischen-den-voegeln.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
   },
   {
     id: "painting-am-strand",
@@ -61,6 +68,7 @@ export const paintings: Artwork[] = [
       "Eine sitzende Figur in einer weiten, fantastischen Landschaft in Grautönen.",
     image: "/images/painting-am-strand.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
   },
   {
     id: "painting-pferd-im-fenster",
@@ -70,6 +78,7 @@ export const paintings: Artwork[] = [
       "Zwei Figuren unter einem Fenster, über dem ein Pferd auf die Szene blickt.",
     image: "/images/painting-pferd-im-fenster.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
   },
   {
     id: "painting-sami",
@@ -78,6 +87,7 @@ export const paintings: Artwork[] = [
     description: "Ein ausdrucksstarkes Porträt in warmen Farben.",
     image: "/images/painting-sami.webp",
     technique: "Öl auf Leinwand",
+    status: "available",
     year: "2026",
   },
 ];

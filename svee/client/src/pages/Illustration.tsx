@@ -71,7 +71,7 @@ export default function Illustration() {
             <p className="text-lg">Werke werden demnächst hinzugefügt.</p>
           </div>
         ) : (
-          <div className="gallery-grid">
+          <div className="gallery-grid artwork-gallery">
             {illustrations.map((artwork) => (
               <div
                 key={artwork.id}

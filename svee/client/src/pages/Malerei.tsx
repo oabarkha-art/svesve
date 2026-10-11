@@ -1,12 +1,8 @@
-import { useState } from "react";
 import Layout from "@/components/Layout";
 
 import { paintings } from "@/data/artworks";
-import { Link } from "wouter";
 
 export default function Malerei() {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-
   return (
     <Layout>
       {/* Page Header */}
@@ -39,13 +35,11 @@ export default function Malerei() {
             <p className="text-lg">Werke werden demnächst hinzugefügt.</p>
           </div>
         ) : (
-          <div className="gallery-grid gallery-grid--masonry">
+          <div className="gallery-grid artwork-gallery">
             {paintings.map((artwork) => (
               <div
                 key={artwork.id}
                 className="artwork-card"
-                onMouseEnter={() => setHoveredId(artwork.id)}
-                onMouseLeave={() => setHoveredId(null)}
               >
                 {/* Artwork Image */}
                 <div className="overflow-hidden rounded-sm bg-muted">
@@ -54,9 +48,7 @@ export default function Malerei() {
                     alt={artwork.title}
                     loading="lazy"
                     decoding="async"
-                    className={`artwork-image artwork-hover ${
-                      hoveredId === artwork.id ? "scale-105" : ""
-                    }`}
+                    className="artwork-image artwork-hover"
                   />
                 </div>
 
@@ -70,12 +62,17 @@ export default function Malerei() {
                     </p>
                   </div>
                   <p className="artwork-description">{artwork.description}</p>
-                  <Link
-                    href={`/prints?werk=${artwork.id}`}
-                    className="text-primary underline underline-offset-4 text-sm"
-                  >
-                    Als Print entdecken →
-                  </Link>
+                  {artwork.status === "sold" ? (
+                    <span className="painting-sold">Sold</span>
+                  ) : (
+                    <a
+                      className="painting-request"
+                      href={`mailto:svea.fritzenkoetter00@gmail.com?subject=${encodeURIComponent(`Anfrage zum Gemälde "${artwork.title}"`)}`}
+                      aria-label={`Request painting: ${artwork.title}`}
+                    >
+                      Request painting
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -92,9 +89,9 @@ export default function Malerei() {
         </p>
         <a
           className="shop-button"
-          href="mailto:svea.fritzenkoetter00@gmail.com?subject=Request%20Painting"
+          href="mailto:svea.fritzenkoetter00@gmail.com?subject=Anfrage%20zum%20Portr%C3%A4t"
         >
-          Request Painting
+          Request painting
         </a>
       </section>
       {/* Bottom spacing */}

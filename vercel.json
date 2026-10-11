@@ -1,0 +1,29 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm ci --prefix svee",
+  "buildCommand": "NODE_ENV=production npm run build --prefix svee",
+  "outputDirectory": "svee/client/dist/public",
+  "rewrites": [
+    {
+      "source": "/malerei",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/illustration",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/prints",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/kontakt",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/kasse",
+      "destination": "/index.html"
+    }
+  ]
+}

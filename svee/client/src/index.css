@@ -1,8 +1,6 @@
 @import "tailwindcss";
 
-
-/* Google Fonts - Playfair Display & Lato */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;700&display=swap');
+/* Josefin Sans: typography from the artist brief. */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -43,45 +41,45 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: 'Lato', sans-serif;
-  --font-serif: 'Playfair Display', serif;
+  --font-sans: "Josefin Sans", sans-serif;
+  --font-serif: "Josefin Sans", sans-serif;
 }
 
 :root {
   /* Minimalist Art Gallery Design Colors */
-  --primary: #C67C4E;
-  --primary-foreground: #F8F7F3;
-  --sidebar-primary: #C67C4E;
-  --sidebar-primary-foreground: #F8F7F3;
-  --chart-1: #C67C4E;
-  --chart-2: #A89F8F;
-  --chart-3: #8B7F73;
-  --chart-4: #6B6359;
-  --chart-5: #2B2B2B;
+  --primary: #8b2500;
+  --primary-foreground: #f8f7f3;
+  --sidebar-primary: #8b2500;
+  --sidebar-primary-foreground: #f8f7f3;
+  --chart-1: #8b2500;
+  --chart-2: #a89f8f;
+  --chart-3: #6b5d56;
+  --chart-4: #6b6359;
+  --chart-5: #2b2b2b;
   --radius: 0.4rem;
-  --background: #F8F7F3;
-  --foreground: #2B2B2B;
-  --card: #FFFFFF;
-  --card-foreground: #2B2B2B;
-  --popover: #FFFFFF;
-  --popover-foreground: #2B2B2B;
-  --secondary: #A89F8F;
-  --secondary-foreground: #2B2B2B;
-  --muted: #E8E4DC;
-  --muted-foreground: #8B7F73;
-  --accent: #C67C4E;
-  --accent-foreground: #F8F7F3;
-  --destructive: #D97E5C;
-  --destructive-foreground: #F8F7F3;
-  --border: #E8E4DC;
-  --input: #FFFFFF;
-  --ring: #C67C4E;
-  --sidebar: #F8F7F3;
-  --sidebar-foreground: #2B2B2B;
-  --sidebar-accent: #C67C4E;
-  --sidebar-accent-foreground: #F8F7F3;
-  --sidebar-border: #E8E4DC;
-  --sidebar-ring: #C67C4E;
+  --background: #f8f7f3;
+  --foreground: #2b2b2b;
+  --card: #ffffff;
+  --card-foreground: #2b2b2b;
+  --popover: #ffffff;
+  --popover-foreground: #2b2b2b;
+  --secondary: #a89f8f;
+  --secondary-foreground: #2b2b2b;
+  --muted: #e8e4dc;
+  --muted-foreground: #6b5d56;
+  --accent: #8b2500;
+  --accent-foreground: #f8f7f3;
+  --destructive: #d97e5c;
+  --destructive-foreground: #f8f7f3;
+  --border: #e8e4dc;
+  --input: #ffffff;
+  --ring: #8b2500;
+  --sidebar: #f8f7f3;
+  --sidebar-foreground: #2b2b2b;
+  --sidebar-accent: #8b2500;
+  --sidebar-accent-foreground: #f8f7f3;
+  --sidebar-border: #e8e4dc;
+  --sidebar-ring: #8b2500;
 }
 
 .dark {
@@ -100,7 +98,7 @@
   --muted: oklch(0.274 0.006 286.033);
   --muted-foreground: oklch(0.705 0.015 286.067);
   --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground:  oklch(0.92 0.005 65);
+  --accent-foreground: oklch(0.92 0.005 65);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(1 0 0 / 10%);
@@ -114,7 +112,7 @@
   --sidebar: oklch(0.21 0.006 285.885);
   --sidebar-foreground: oklch(0.85 0.005 65);
   --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground:  oklch(0.985 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.488 0.243 264.376);
 }
@@ -125,10 +123,15 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Lato', sans-serif;
+    font-family: "Josefin Sans", sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Josefin Sans", sans-serif;
     @apply font-bold;
   }
   button:not(:disabled),
@@ -176,7 +179,7 @@
   /* Divider Line */
   .divider-line {
     height: 1px;
-    background-color: #E8E4DC;
+    background-color: #e8e4dc;
   }
 
   /* Elegant Hover Effect */
@@ -192,7 +195,7 @@
   /* Masonry Gallery */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 3rem;
     padding: 3rem 0;
   }
@@ -234,15 +237,63 @@
   .artwork-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #2B2B2B;
+    color: #2b2b2b;
     margin: 0;
-    font-family: 'Playfair Display', serif;
+    font-family: "Josefin Sans", sans-serif;
   }
 
   .artwork-description {
     font-size: 0.95rem;
     line-height: 1.6;
-    color: #8B7F73;
-    font-family: 'Lato', sans-serif;
+    color: #6b5d56;
+    font-family: "Josefin Sans", sans-serif;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-sm tracking-widest uppercase text-primary mb-4 font-medium;
+  }
+  .shop-button {
+    @apply inline-block rounded-sm px-6 py-3 bg-primary text-primary-foreground font-medium transition-colors hover:bg-primary/90 disabled:opacity-50;
+  }
+  .shop-input {
+    @apply w-full px-4 py-3 border border-border rounded-sm bg-background text-foreground;
+  }
+  .print-card {
+    @apply bg-card border border-border rounded-sm overflow-hidden;
+  }
+  .print-image {
+    @apply aspect-[4/5] p-5 bg-muted/35 flex items-center justify-center;
+  }
+  .print-image img {
+    @apply w-full h-full object-contain;
+  }
+  .filter-button {
+    @apply border border-border rounded-full px-5 py-2 text-sm hover:border-primary transition-colors;
+  }
+  .filter-button.active {
+    @apply bg-primary text-primary-foreground border-primary;
+  }
+  .cart-toggle {
+    @apply inline-flex items-center gap-2 text-primary p-2;
+  }
+  .cart-toggle span {
+    @apply rounded-full bg-primary text-primary-foreground text-xs min-w-5 h-5 flex items-center justify-center;
+  }
+  .quantity-button {
+    @apply p-2 border border-border rounded-sm disabled:opacity-40;
+  }
+}
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

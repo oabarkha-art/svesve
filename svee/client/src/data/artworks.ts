@@ -14,7 +14,7 @@ export const paintings: Artwork[] = [
   {
     id: "painting-seerose",
     category: "malerei",
-    title: "Seerose",
+    title: "Grüner Schnee",
     description:
       "Ein Kind beugt sich über eine Seerose in einer grünen, traumhaften Landschaft.",
     image: "/images/painting-seerose.webp",
@@ -24,7 +24,7 @@ export const paintings: Artwork[] = [
     id: "painting-der-spiegel",
     sold: true,
     category: "malerei",
-    title: "Der Spiegel",
+    title: "Klosterjunge",
     description:
       "Eine Figur zwischen Spiegel, Baum und einem stillen Innenraum.",
     image: "/images/painting-der-spiegel.webp",
@@ -33,7 +33,7 @@ export const paintings: Artwork[] = [
   {
     id: "painting-am-meer",
     category: "malerei",
-    title: "Am Meer",
+    title: "Sternentür",
     description: "Ein Blick zum Meer, gerahmt von dunklen Ästen und einer Tür.",
     image: "/images/painting-am-meer.webp",
     technique: "Öl auf Leinwand",
@@ -42,7 +42,7 @@ export const paintings: Artwork[] = [
     id: "painting-verschmelzung",
     sold: true,
     category: "malerei",
-    title: "Verschmelzung",
+    title: "Wassermann",
     description:
       "Ein dunkles Porträt, in dem Mensch und fantastische Formen ineinanderfließen.",
     image: "/images/painting-verschmelzung.webp",
@@ -51,7 +51,7 @@ export const paintings: Artwork[] = [
   {
     id: "painting-zwischen-den-voegeln",
     category: "malerei",
-    title: "Zwischen den Vögeln",
+    title: "Paradies",
     description:
       "Vögel, Figuren und architektonische Formen begegnen sich in einer surrealen Welt.",
     image: "/images/painting-zwischen-den-voegeln.webp",
@@ -61,7 +61,7 @@ export const paintings: Artwork[] = [
     id: "painting-am-strand",
     sold: true,
     category: "malerei",
-    title: "Am Strand",
+    title: "Gezeiten",
     description:
       "Eine sitzende Figur in einer weiten, fantastischen Landschaft in Grautönen.",
     image: "/images/painting-am-strand.webp",
@@ -70,7 +70,7 @@ export const paintings: Artwork[] = [
   {
     id: "painting-pferd-im-fenster",
     category: "malerei",
-    title: "Pferd im Fenster",
+    title: "Schwestern",
     description:
       "Zwei Figuren unter einem Fenster, über dem ein Pferd auf die Szene blickt.",
     image: "/images/painting-pferd-im-fenster.webp",
@@ -169,7 +169,82 @@ export const illustrations: Artwork[] = [
   },
 ];
 
-export const artworks: Artwork[] = [...paintings, ...illustrations];
+export const additionalPrints: Artwork[] = [
+  {
+    "id": "print-cats",
+    "category": "malerei",
+    "title": "Cats",
+    "description": "",
+    "image": "/images/print-cats.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-img-6495",
+    "category": "malerei",
+    "title": "IMG_6495",
+    "description": "",
+    "image": "/images/print-img-6495.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-inga",
+    "category": "malerei",
+    "title": "Inga",
+    "description": "",
+    "image": "/images/print-inga.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-schwimmer",
+    "category": "malerei",
+    "title": "Schwimmer",
+    "description": "",
+    "image": "/images/print-schwimmer.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-postkarte-a5-2",
+    "category": "illustration",
+    "title": "prints a52",
+    "description": "",
+    "image": "/images/print-postkarte-a5-2.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-postkarte-a5-6",
+    "category": "illustration",
+    "title": "prints a56",
+    "description": "",
+    "image": "/images/print-postkarte-a5-6.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-postkarte-a5-7",
+    "category": "illustration",
+    "title": "prints a57",
+    "description": "",
+    "image": "/images/print-postkarte-a5-7.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-postkarte-a5-8",
+    "category": "illustration",
+    "title": "prints a58",
+    "description": "",
+    "image": "/images/print-postkarte-a5-8.webp",
+    "technique": "Kunstdruck"
+  },
+  {
+    "id": "print-postkarte-a5-9",
+    "category": "illustration",
+    "title": "prints a59",
+    "description": "",
+    "image": "/images/print-postkarte-a5-9.webp",
+    "technique": "Kunstdruck"
+  }
+];
+
+export const artworks: Artwork[] = [...paintings, ...illustrations, ...additionalPrints];
 export const formats = ["A5", "A4", "A3"] as const;
 export type PrintFormat = (typeof formats)[number];
 // Prices in cents, shared by the browser and order endpoint.

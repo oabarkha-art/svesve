@@ -36,7 +36,7 @@ export default function Home() {
       <section className="container py-8 md:py-12">
         <div className="grid md:grid-cols-2 gap-6">
           <Link href="/malerei" className="group">
-            <img src="/images/painting-seerose.webp" alt="Seerose" loading="lazy"
+            <img src="/images/painting-seerose.webp" alt="Grüner Schnee" loading="lazy"
               className="w-full aspect-[4/3] object-cover" />
             <h3 className="text-3xl mt-4 group-hover:text-primary">Malerei →</h3>
           </Link>

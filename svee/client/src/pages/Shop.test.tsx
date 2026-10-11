@@ -37,14 +37,14 @@ function fillForm() {
   fireEvent.click(screen.getByRole("checkbox"));
 }
 describe("shop interaction", () => {
-  it("filters all 16 artworks by painting and illustration", async () => {
+  it("filters all 25 artworks by painting and illustration", async () => {
     const user = userEvent.setup();
     show(<Prints />);
-    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(16);
+    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(25);
     await user.click(screen.getByRole("button", { name: "Malerei" }));
-    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(9);
+    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(13);
     await user.click(screen.getByRole("button", { name: "Illustration" }));
-    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(7);
+    expect(screen.getAllByText(/In den Warenkorb/)).toHaveLength(12);
   });
   it("adds selected formats and keeps quantities in browser storage", async () => {
     const user = userEvent.setup();
@@ -55,7 +55,7 @@ describe("shop interaction", () => {
     );
     expect(screen.getByRole("dialog")).toBeTruthy();
     await user.click(
-      screen.getByRole("button", { name: "Ein Print mehr: Seerose" }),
+      screen.getByRole("button", { name: "Ein Print mehr: Grüner Schnee" }),
     );
     await waitFor(() =>
       expect(JSON.parse(localStorage.getItem("svea-print-cart-v1")!)).toEqual([
@@ -65,7 +65,7 @@ describe("shop interaction", () => {
     expect(screen.getByText("104,00 €", { selector: "strong" })).toBeTruthy();
     await user.click(
       screen.getByRole("button", {
-        name: "Seerose aus dem Warenkorb entfernen",
+        name: "Grüner Schnee aus dem Warenkorb entfernen",
       }),
     );
     expect(screen.getByText("Dein Warenkorb ist noch leer.")).toBeTruthy();

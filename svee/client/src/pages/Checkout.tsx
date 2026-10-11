@@ -1,3 +1,4 @@
+import { inquiryLink } from "@/lib/contact";
 import { useRef, useState, type FormEvent } from "react";
 import { Link } from "wouter";
 import Layout from "@/components/Layout";
@@ -188,7 +189,7 @@ export default function Checkout() {
                     <p role="alert" className="text-primary">
                       {error}{" "}
                       <a
-                        href="mailto:abarkha@outlook.com"
+                        href={inquiryLink("Print-Bestellanfrage")}
                         className="underline"
                       >
                         E-Mail schreiben

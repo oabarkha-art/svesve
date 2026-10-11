@@ -4,9 +4,32 @@ import Layout from "@/components/Layout";
 export default function Home() {
   return (
     <Layout>
-      {/* Banner artwork: replace the fallback with /images/startseite-banner.jpg when uploaded. */}
-      <section className="container pt-10 md:pt-14">
-        <div className="home-banner" role="img" aria-label="Rosafarbenes Gemälde als Startseitenbanner" />
+      {/* Die beiden Originalbilder stehen am Anfang der Startseite. */}
+      <section className="home-image-stack" aria-label="Ausgewählte Werke">
+        <div className="home-image-block">
+          <h2 className="home-feature-title container">Startseite</h2>
+          <img
+            src="/images/startseite-banner.jpg"
+            alt="Abstrakte Malerei in Rosé, Altrosa und warmen Rottönen"
+            width={2048}
+            height={844}
+            className="home-feature-image home-banner-image"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="home-image-block">
+          <h2 className="home-feature-title container">Aktuelles</h2>
+          <img
+            src="/images/adventskalender.jpg"
+            alt="Drei Kinder schauen an einem weihnachtlich dekorierten Fenster auf die Türme einer Kirche im Schnee"
+            width={4630}
+            height={3271}
+            className="home-feature-image home-advent-image"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </section>
 
       {/* Hero Section */}
@@ -79,7 +102,7 @@ export default function Home() {
             <div className="group cursor-pointer">
               <div className="aspect-[4/3] bg-muted rounded-sm overflow-hidden mb-5">
                 <img
-                  src="/images/illustration-nature.webp"
+                  src="/images/illustration-kirschen.jpg"
                   alt="Illustration"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -107,11 +130,7 @@ export default function Home() {
         <div className="divider-line" />
       </div>
 
-      <section className="container py-12 md:py-16">
-        <h3 className="text-2xl md:text-3xl mb-6">Aktuelles · Zonta Adventskalender</h3>
-        <div className="advent-artwork" role="img" aria-label="Adventskalender-Motiv mit Kindern am Fenster und Blick auf die Kirche" />
-      </section>
-      <section className="container py-12 grid md:grid-cols-2 gap-12">
+<section className="container py-12 grid md:grid-cols-2 gap-12">
         <div>
           <p className="eyebrow">Aktuelles</p>
           <h3 className="text-2xl mb-4">Für meine Lübecker:innen ♡</h3>

@@ -4,9 +4,10 @@ import Layout from "@/components/Layout";
 export default function Home() {
   return (
     <Layout>
-      <section className="container pt-8 md:pt-12">
+      <section className="w-full">
         <img src="/images/home-banner.webp" alt="" width={2048} height={844}
-          fetchPriority="high" className="w-full h-auto" />
+          fetchPriority="high" className="block w-full h-auto" />
+        <div className="container">
         <div className="max-w-3xl py-8 md:py-12">
           <h2 className="text-4xl md:text-5xl font-medium mb-5">Hi, ich bin Svea</h2>
           <p className="text-lg leading-relaxed">
@@ -14,6 +15,7 @@ export default function Home() {
             zum Leben zu erwecken.
           </p>
           <p className="text-lg mt-4">Schön, dass du da bist!</p>
+        </div>
         </div>
       </section>
       <section className="container grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-center pb-12">

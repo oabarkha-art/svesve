@@ -4,6 +4,11 @@ import Layout from "@/components/Layout";
 export default function Home() {
   return (
     <Layout>
+      {/* Banner artwork: replace the fallback with /images/startseite-banner.jpg when uploaded. */}
+      <section className="container pt-10 md:pt-14">
+        <div className="home-banner" role="img" aria-label="Rosafarbenes Gemälde als Startseitenbanner" />
+      </section>
+
       {/* Hero Section */}
       <section className="container py-16 md:py-24">
         <div className="max-w-3xl">
@@ -102,6 +107,10 @@ export default function Home() {
         <div className="divider-line" />
       </div>
 
+      <section className="container py-12 md:py-16">
+        <h3 className="text-2xl md:text-3xl mb-6">Aktuelles · Zonta Adventskalender</h3>
+        <div className="advent-artwork" role="img" aria-label="Adventskalender-Motiv mit Kindern am Fenster und Blick auf die Kirche" />
+      </section>
       <section className="container py-12 grid md:grid-cols-2 gap-12">
         <div>
           <p className="eyebrow">Aktuelles</p>

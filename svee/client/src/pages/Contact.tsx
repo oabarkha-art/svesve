@@ -1,16 +1,21 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+import TikTokIcon from "@/components/TikTokIcon";
 import { artistEmail, inquiryLink } from "@/lib/contact";
 import { Mail, Instagram } from "lucide-react";
 import Layout from "@/components/Layout";
 export default function Contact() {
+  const { t } = useLanguage();
   return (
     <Layout>
       <section className="container py-16 md:py-24 max-w-3xl">
-        <p className="eyebrow">Kontakt</p>
-        <h2 className="text-4xl md:text-5xl mb-6">Lass uns sprechen.</h2>
+        <p className="eyebrow">{t("Kontakt")}</p>
+        <h2 className="text-4xl md:text-5xl mb-6">{t("Lass uns sprechen.")}</h2>
         <p className="text-lg text-muted-foreground leading-relaxed mb-10">
-          Du bist neugierig auf meine Arbeit, hast eine Idee für eine
-          Zusammenarbeit oder einfach Lust auf ein Gespräch? Lass uns einen
-          Kaffee trinken und reden! Ich freue mich, von dir zu hören.
+          {" " +
+            t(
+              "Du bist neugierig auf meine Arbeit, hast eine Idee f\xFCr eine Zusammenarbeit oder einfach Lust auf ein Gespr\xE4ch? Lass uns einen Kaffee trinken und reden! Ich freue mich, von dir zu h\xF6ren.",
+            ) +
+            " "}
         </p>
         <a
           className="shop-button inline-flex items-center gap-3"
@@ -19,7 +24,7 @@ export default function Contact() {
           <Mail size={18} />
           {artistEmail}
         </a>
-        <p className="mt-8 text-muted-foreground">Deutschland</p>
+        <p className="mt-8 text-muted-foreground">{t("Deutschland")}</p>
         <div className="flex flex-wrap gap-6 mt-8">
           <a
             href="https://www.instagram.com/svea_syy/"
@@ -34,9 +39,11 @@ export default function Contact() {
             href="https://www.tiktok.com/@sveasyy"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary"
+            className="inline-flex items-center justify-center min-w-11 min-h-11 text-primary"
+            aria-label="TikTok: @sveasyy"
+            title="TikTok: @sveasyy"
           >
-            TikTok @sveasyy
+            <TikTokIcon size={24} />
           </a>
         </div>
       </section>

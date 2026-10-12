@@ -1,57 +1,98 @@
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "wouter";
 import Layout from "@/components/Layout";
-
 export default function Home() {
+  const { t } = useLanguage();
   return (
     <Layout>
       <section className="w-full">
-        <img src="/images/home-banner.webp" alt="" width={2048} height={844}
-          fetchPriority="high" className="block w-full h-auto" />
+        <img
+          src="/images/home-banner.webp"
+          alt=""
+          width={2048}
+          height={844}
+          fetchPriority="high"
+          className="block w-full h-auto"
+        />
         <div className="container">
-        <div className="max-w-3xl py-8 md:py-12">
-          <h2 className="text-4xl md:text-5xl font-medium mb-5">Hi, ich bin Svea</h2>
-          <p className="text-lg leading-relaxed">
-            Ich bin Illustratorin und Malerin. Ich liebe es, fantastische Welten
-            zum Leben zu erwecken.
-          </p>
-          <p className="text-lg mt-4">Schön, dass du da bist!</p>
-        </div>
+          <div className="max-w-3xl py-8 md:py-12">
+            <h2 className="text-4xl md:text-5xl font-medium mb-5">
+              {t("Hi, ich bin Svea")}
+            </h2>
+            <p className="text-lg leading-relaxed">
+              {" " +
+                t(
+                  "Ich bin Illustratorin und Malerin. Ich liebe es, fantastische Welten zum Leben zu erwecken.",
+                ) +
+                " "}
+            </p>
+            <p className="text-lg mt-4">{t("Sch\xF6n, dass du da bist!")}</p>
+          </div>
         </div>
       </section>
       <section className="container grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-center pb-12">
         <div>
-          <h3 className="text-2xl mb-4">Aktuelles</h3>
+          <h3 className="text-2xl mb-4">{t("Aktuelles")}</h3>
           <p className="text-lg leading-relaxed">
-            Für meine Lübecker:innen ♡ Ab dem 20. Oktober ist der diesjährige
-            Zonta Adventskalender mit meinem Motiv erhältlich.
+            {" " +
+              t(
+                "F\xFCr meine L\xFCbecker:innen \u2661 Ab dem 20. Oktober ist der diesj\xE4hrige Zonta Adventskalender mit meinem Motiv erh\xE4ltlich.",
+              ) +
+              " "}
           </p>
-          <h3 className="text-2xl mt-8 mb-4">Zusammenarbeit</h3>
+          <h3 className="text-2xl mt-8 mb-4">{t("Zusammenarbeit")}</h3>
           <p className="text-muted-foreground leading-relaxed">
-            Einige meiner liebsten Kooperationen: Zonta Club · Johanniter ·
-            GEOMAR Helmholtz-Zentrum für Ozeanforschung
+            {" " +
+              t(
+                "Einige meiner liebsten Kooperationen: Zonta Club \xB7 Johanniter \xB7 GEOMAR Helmholtz-Zentrum f\xFCr Ozeanforschung",
+              ) +
+              " "}
           </p>
         </div>
-        <img src="/images/home-zonta.webp"
-          alt="Kinder am Fenster mit Blick auf Lübecker Kirchen im Winter"
-          width={1800} height={1272} decoding="async" className="w-full h-auto" />
+        <img
+          src="/images/home-zonta.webp"
+          alt={t(
+            "Kinder am Fenster mit Blick auf L\xFCbecker Kirchen im Winter",
+          )}
+          width={1800}
+          height={1272}
+          decoding="async"
+          className="w-full h-auto"
+        />
       </section>
       <section className="container py-8 md:py-12">
         <div className="grid md:grid-cols-2 gap-6">
           <Link href="/malerei" className="group">
-            <img src="/images/painting-seerose.webp" alt="Grüner Schnee" loading="lazy"
-              className="w-full aspect-[4/3] object-cover" />
-            <h3 className="text-3xl mt-4 group-hover:text-primary">Malerei →</h3>
+            <img
+              src="/images/painting-seerose.webp"
+              alt="Grüner Schnee"
+              loading="lazy"
+              className="w-full aspect-[4/3] object-cover"
+            />
+            <h3 className="text-3xl mt-4 group-hover:text-primary">
+              {t("Malerei \u2192")}
+            </h3>
           </Link>
           <Link href="/illustration" className="group">
-            <img src="/images/illustration-hasen.jpg" alt="Unter Hasen" loading="lazy"
-              className="w-full aspect-[4/3] object-cover" />
-            <h3 className="text-3xl mt-4 group-hover:text-primary">Illustration →</h3>
+            <img
+              src="/images/illustration-hasen.jpg"
+              alt="Unter Hasen"
+              loading="lazy"
+              className="w-full aspect-[4/3] object-cover"
+            />
+            <h3 className="text-3xl mt-4 group-hover:text-primary">
+              Illustration →
+            </h3>
           </Link>
         </div>
       </section>
       <section className="container py-12">
-        <h3 className="text-3xl mb-5">Ein Stück meiner Welt für dein Zuhause.</h3>
-        <Link className="shop-button" href="/prints">Prints entdecken →</Link>
+        <h3 className="text-3xl mb-5">
+          {t("Ein St\xFCck meiner Welt f\xFCr dein Zuhause.")}
+        </h3>
+        <Link className="shop-button" href="/prints">
+          {t("Prints entdecken \u2192")}
+        </Link>
       </section>
     </Layout>
   );

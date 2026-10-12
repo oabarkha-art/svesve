@@ -1,3 +1,4 @@
+import { LanguageProvider } from "./contexts/LanguageContext";
 import { Toaster as Sonner } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
@@ -29,16 +30,18 @@ function Router() {
 
 function App() {
   return (
-    <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <Sonner />
-          <CartProvider>
-            <Router />
-          </CartProvider>
-        </TooltipProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <LanguageProvider>
+      <ErrorBoundary>
+        <ThemeProvider defaultTheme="light">
+          <TooltipProvider>
+            <Sonner />
+            <CartProvider>
+              <Router />
+            </CartProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </LanguageProvider>
   );
 }
 

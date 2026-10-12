@@ -1,10 +1,9 @@
+import { useCatalog } from "@/contexts/CatalogContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import {
-  artworks,
   formats,
-  printPrices,
   formatDimensions,
   money,
   type Artwork,
@@ -13,6 +12,7 @@ import {
 import { useCart } from "@/contexts/CartContext";
 function PrintCard({ artwork }: { artwork: Artwork }) {
   const { t } = useLanguage();
+  const { artworks, printPrices, ready, error: catalogError } = useCatalog();
   const [format, setFormat] = useState<PrintFormat>("A4");
   const cart = useCart();
   return (
@@ -50,6 +50,7 @@ function PrintCard({ artwork }: { artwork: Artwork }) {
         </select>
         <button
           type="button"
+          disabled={!ready}
           onClick={() => cart.add(artwork.id, format)}
           className="shop-button w-full"
         >
@@ -62,6 +63,7 @@ function PrintCard({ artwork }: { artwork: Artwork }) {
 }
 export default function Prints() {
   const { t } = useLanguage();
+  const { artworks, printPrices, ready, error: catalogError } = useCatalog();
   const selected = new URLSearchParams(window.location.search).get("werk");
   const [filter, setFilter] = useState("alle");
   const visible = artworks.filter(
@@ -110,10 +112,12 @@ export default function Prints() {
         </div>
         <p className="text-sm text-muted-foreground mt-4" aria-live="polite">
           {visible.length}
-          {" " +
-            t("Motive \xB7 A5 12 \u20AC \xB7 A4 24 \u20AC \xB7 A3 52 \u20AC") +
-            " "}
+          {" · " +
+            formats
+              .map((size) => `${size} ${money(printPrices[size])}`)
+              .join(" · ")}
         </p>
+        {catalogError && <p role="alert">{catalogError}</p>}
         <div className="gallery-grid">
           {sorted.map((artwork) => (
             <PrintCard key={artwork.id} artwork={artwork} />

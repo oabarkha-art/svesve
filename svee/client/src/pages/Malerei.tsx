@@ -1,9 +1,13 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import Layout from "@/components/Layout";
-import { paintings } from "@/data/artworks";
+import { useCatalog } from "@/contexts/CatalogContext";
 import { inquiryLink } from "@/lib/contact";
 export default function Malerei() {
   const { t } = useLanguage();
+  const { artworks } = useCatalog();
+  const paintings = artworks.filter(
+    (a) => a.gallery && a.category === "malerei",
+  );
   return (
     <Layout>
       {/* Page Header */}

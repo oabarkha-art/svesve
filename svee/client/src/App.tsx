@@ -1,3 +1,5 @@
+import { CatalogProvider } from "./contexts/CatalogContext";
+import Admin from "./pages/Admin";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { Toaster as Sonner } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -22,6 +24,7 @@ function Router() {
       <Route path="/prints" component={Prints} />
       <Route path="/kasse" component={Checkout} />
       <Route path="/kontakt" component={Contact} />
+      <Route path="/admin" component={Admin} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -35,9 +38,11 @@ function App() {
         <ThemeProvider defaultTheme="light">
           <TooltipProvider>
             <Sonner />
-            <CartProvider>
-              <Router />
-            </CartProvider>
+            <CatalogProvider>
+              <CartProvider>
+                <Router />
+              </CartProvider>
+            </CatalogProvider>
           </TooltipProvider>
         </ThemeProvider>
       </ErrorBoundary>

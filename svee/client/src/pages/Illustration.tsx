@@ -1,10 +1,14 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import BookPreview from "@/components/BookPreview";
 import Layout from "@/components/Layout";
-import { illustrations } from "@/data/artworks";
+import { useCatalog } from "@/contexts/CatalogContext";
 import { Link } from "wouter";
 export default function Illustration() {
   const { t } = useLanguage();
+  const { artworks } = useCatalog();
+  const illustrations = artworks.filter(
+    (a) => a.gallery && a.category === "illustration",
+  );
   return (
     <Layout>
       {/* Page Header */}

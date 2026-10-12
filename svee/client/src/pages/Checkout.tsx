@@ -1,13 +1,16 @@
+import { supabaseUrl, supabaseKey, orderKey } from "@/lib/supabase";
+import { useCatalog } from "@/contexts/CatalogContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { inquiryLink } from "@/lib/contact";
 import { useRef, useState, type FormEvent } from "react";
 import { Link } from "wouter";
 import Layout from "@/components/Layout";
 import { useCart, itemKey } from "@/contexts/CartContext";
-import { artworks, printPrices, money } from "@/data/artworks";
+import { money } from "@/data/artworks";
 import { orderSchema } from "../../../shared/orders";
 export default function Checkout() {
   const { t } = useLanguage();
+  const { artworks, printPrices, ready, error: catalogError } = useCatalog();
   const cart = useCart();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -22,7 +25,7 @@ export default function Checkout() {
   } | null>(null);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (busy) return;
+    if (busy || !ready) return;
     const data = new FormData(event.currentTarget);
     const customer = Object.fromEntries(
       [
@@ -62,11 +65,13 @@ export default function Checkout() {
     setBusy(true);
     setError("");
     try {
-      const response = await fetch("/.netlify/functions/orders", {
+      const response = await fetch(`${supabaseUrl}/functions/v1/orders`, {
         method: "POST",
         signal: AbortSignal.timeout(20000),
         headers: {
           "Content-Type": "application/json",
+          apikey: supabaseKey,
+          Authorization: `Bearer ${orderKey}`,
         },
         body: JSON.stringify(parsed.data),
       });
@@ -95,6 +100,7 @@ export default function Checkout() {
     <Layout>
       <section className="container py-12 md:py-16">
         <p className="eyebrow">{t("Deine Auswahl")}</p>
+        {catalogError && <p role="alert">{catalogError}</p>}
         <h2 className="text-4xl md:text-5xl mb-5">{t("Bestellanfrage")}</h2>
         {receipt ? (
           <div role="status" className="max-w-xl py-8">
@@ -143,7 +149,7 @@ export default function Checkout() {
             </p>
             <div className="grid lg:grid-cols-2 gap-12">
               <form onSubmit={submit} className="space-y-5">
-                <fieldset disabled={busy} className="space-y-5">
+                <fieldset disabled={busy || !ready} className="space-y-5">
                   <legend className="text-xl font-semibold mb-5">
                     {" " + t("Kontakt & Lieferadresse") + " "}
                   </legend>
@@ -240,7 +246,7 @@ export default function Checkout() {
                   <button
                     type="submit"
                     className="shop-button w-full"
-                    disabled={busy}
+                    disabled={busy || !ready}
                   >
                     {busy
                       ? t("Anfrage wird gespeichert \u2026")
@@ -258,12 +264,12 @@ export default function Checkout() {
                     return (
                       <li key={itemKey(item)} className="flex gap-4 py-4">
                         <img
-                          src={artwork.image}
-                          alt={artwork.title}
+                          src={artwork?.image}
+                          alt={artwork?.title || item.artworkId}
                           className="w-16 h-20 object-contain"
                         />
                         <div className="flex-1">
-                          <p>{artwork.title}</p>
+                          <p>{artwork?.title || item.artworkId}</p>
                           <p className="text-sm text-muted-foreground">
                             {item.quantity} × {item.format}
                           </p>
@@ -285,7 +291,7 @@ export default function Checkout() {
                 <button
                   type="button"
                   className="text-primary underline mt-5"
-                  disabled={busy}
+                  disabled={busy || !ready}
                   onClick={() => cart.setOpen(true)}
                 >
                   {" " + t("Warenkorb bearbeiten") + " "}

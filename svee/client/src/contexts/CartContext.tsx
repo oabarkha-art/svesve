@@ -1,3 +1,4 @@
+import { useCatalog } from "./CatalogContext";
 import {
   createContext,
   useContext,
@@ -5,12 +6,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import {
-  artworks,
-  formats,
-  printPrices,
-  type PrintFormat,
-} from "@/data/artworks";
+import { artworks, formats, type PrintFormat } from "@/data/artworks";
 
 export interface CartItem {
   artworkId: string;
@@ -26,7 +22,9 @@ export function restoreCart(value: unknown): CartItem[] {
   for (const item of value.slice(0, 100)) {
     if (
       !item ||
-      !artworks.some((a) => a.id === item.artworkId) ||
+      typeof item.artworkId !== "string" ||
+      item.artworkId.length > 100 ||
+      !item.artworkId.length ||
       !formats.includes(item.format) ||
       !Number.isInteger(item.quantity) ||
       item.quantity < 1 ||
@@ -64,6 +62,7 @@ interface CartValue {
 }
 const CartContext = createContext<CartValue | null>(null);
 export function CartProvider({ children }: { children: ReactNode }) {
+  const { printPrices } = useCatalog();
   const [items, setItems] = useState<CartItem[]>(loadCart);
   const [open, setOpen] = useState(false);
   useEffect(() => {

@@ -13,6 +13,8 @@ import { CartProvider } from "../contexts/CartContext";
 import Prints from "./Prints";
 import Checkout from "./Checkout";
 
+vi.mock("@/lib/supabase",()=>({supabase:null,supabaseUrl:"https://example.supabase.co",supabaseKey:"test-key",orderKey:"test-anon"}));
+
 beforeEach(() => {
   localStorage.clear();
   window.history.replaceState(null, "", "/prints");

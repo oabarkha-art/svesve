@@ -1,3 +1,4 @@
+import { useCatalog } from "@/contexts/CatalogContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "wouter";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
@@ -8,10 +9,11 @@ import {
   SheetTitle,
   SheetDescription,
 } from "@/components/ui/sheet";
-import { artworks, money, printPrices } from "@/data/artworks";
+import { money } from "@/data/artworks";
 import { useCart, itemKey } from "@/contexts/CartContext";
 export default function Cart() {
   const { t } = useLanguage();
+  const { artworks, printPrices, ready, error: catalogError } = useCatalog();
   const cart = useCart();
   return (
     <>
@@ -56,12 +58,14 @@ export default function Cart() {
                   return (
                     <li key={id} className="flex gap-4 py-5">
                       <img
-                        src={artwork.image}
-                        alt={artwork.title}
+                        src={artwork?.image}
+                        alt={artwork?.title || item.artworkId}
                         className="w-20 h-24 object-contain bg-muted"
                       />
                       <div className="flex-1">
-                        <h3 className="text-base">{artwork.title}</h3>
+                        <h3 className="text-base">
+                          {artwork?.title || item.artworkId}
+                        </h3>
                         <p className="text-sm text-muted-foreground">
                           {item.format} · {money(printPrices[item.format])}
                         </p>
@@ -72,7 +76,7 @@ export default function Cart() {
                             disabled={item.quantity <= 1}
                             onClick={() => cart.update(id, item.quantity - 1)}
                             aria-label={t("Ein Print weniger: {title}", {
-                              title: artwork.title,
+                              title: artwork?.title || item.artworkId,
                             })}
                           >
                             <Minus size={14} />
@@ -84,7 +88,7 @@ export default function Cart() {
                             disabled={item.quantity >= 20}
                             onClick={() => cart.update(id, item.quantity + 1)}
                             aria-label={t("Ein Print mehr: {title}", {
-                              title: artwork.title,
+                              title: artwork?.title || item.artworkId,
                             })}
                           >
                             <Plus size={14} />
@@ -95,7 +99,7 @@ export default function Cart() {
                             onClick={() => cart.remove(id)}
                             aria-label={t(
                               "{title} aus dem Warenkorb entfernen",
-                              { title: artwork.title },
+                              { title: artwork?.title || item.artworkId },
                             )}
                           >
                             <Trash2 size={16} />

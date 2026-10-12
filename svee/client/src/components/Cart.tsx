@@ -1,3 +1,4 @@
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "wouter";
 import { Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import {
@@ -9,8 +10,8 @@ import {
 } from "@/components/ui/sheet";
 import { artworks, money, printPrices } from "@/data/artworks";
 import { useCart, itemKey } from "@/contexts/CartContext";
-
 export default function Cart() {
+  const { t } = useLanguage();
   const cart = useCart();
   return (
     <>
@@ -18,7 +19,9 @@ export default function Cart() {
         type="button"
         className="cart-toggle"
         onClick={() => cart.setOpen(true)}
-        aria-label={`Warenkorb öffnen, ${cart.count} Prints`}
+        aria-label={t("Warenkorb öffnen, {count} Prints", {
+          count: cart.count,
+        })}
       >
         <ShoppingBag size={21} />
         <span>{cart.count}</span>
@@ -26,20 +29,20 @@ export default function Cart() {
       <Sheet open={cart.open} onOpenChange={cart.setOpen}>
         <SheetContent className="flex flex-col w-full sm:max-w-lg p-6">
           <SheetHeader className="p-0 pr-6">
-            <SheetTitle>Dein Warenkorb</SheetTitle>
+            <SheetTitle>{t("Dein Warenkorb")}</SheetTitle>
             <SheetDescription>
-              Handsignierte Prints für dein Zuhause.
+              {" " + t("Handsignierte Prints f\xFCr dein Zuhause.") + " "}
             </SheetDescription>
           </SheetHeader>
           {cart.items.length === 0 ? (
             <div className="py-12">
-              <p className="mb-6">Dein Warenkorb ist noch leer.</p>
+              <p className="mb-6">{t("Dein Warenkorb ist noch leer.")}</p>
               <Link
                 href="/prints"
                 className="shop-button"
                 onClick={() => cart.setOpen(false)}
               >
-                Prints entdecken
+                {" " + t("Prints entdecken") + " "}
               </Link>
             </div>
           ) : (
@@ -68,7 +71,9 @@ export default function Cart() {
                             type="button"
                             disabled={item.quantity <= 1}
                             onClick={() => cart.update(id, item.quantity - 1)}
-                            aria-label={`Ein Print weniger: ${artwork.title}`}
+                            aria-label={t("Ein Print weniger: {title}", {
+                              title: artwork.title,
+                            })}
                           >
                             <Minus size={14} />
                           </button>
@@ -78,7 +83,9 @@ export default function Cart() {
                             type="button"
                             disabled={item.quantity >= 20}
                             onClick={() => cart.update(id, item.quantity + 1)}
-                            aria-label={`Ein Print mehr: ${artwork.title}`}
+                            aria-label={t("Ein Print mehr: {title}", {
+                              title: artwork.title,
+                            })}
                           >
                             <Plus size={14} />
                           </button>
@@ -86,7 +93,10 @@ export default function Cart() {
                             className="ml-auto p-2"
                             type="button"
                             onClick={() => cart.remove(id)}
-                            aria-label={`${artwork.title} aus dem Warenkorb entfernen`}
+                            aria-label={t(
+                              "{title} aus dem Warenkorb entfernen",
+                              { title: artwork.title },
+                            )}
                           >
                             <Trash2 size={16} />
                           </button>
@@ -101,19 +111,22 @@ export default function Cart() {
               </ul>
               <div className="border-t border-border pt-5">
                 <p className="flex justify-between text-lg mb-2">
-                  <span>Prints gesamt</span>
+                  <span>{t("Prints gesamt")}</span>
                   <strong>{money(cart.total)}</strong>
                 </p>
                 <p className="text-sm text-muted-foreground mb-5">
-                  Versandkosten teile ich dir mit meinem Angebot mit. Die
-                  Anfrage ist unverbindlich.
+                  {" " +
+                    t(
+                      "Versandkosten teile ich dir mit meinem Angebot mit. Die Anfrage ist unverbindlich.",
+                    ) +
+                    " "}
                 </p>
                 <Link
                   href="/kasse"
                   className="shop-button w-full text-center"
                   onClick={() => cart.setOpen(false)}
                 >
-                  Zur Bestellanfrage →
+                  {" " + t("Zur Bestellanfrage \u2192") + " "}
                 </Link>
               </div>
             </>

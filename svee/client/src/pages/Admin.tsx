@@ -1,3 +1,4 @@
+import AdminSecurity from "@/components/AdminSecurity";
 import ContentManager from "@/components/ContentManager";
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
@@ -122,7 +123,7 @@ export default function Admin() {
     return () => {
       active = false;
     };
-  }, [session?.user.id]);
+  }, [session?.access_token]);
   async function run(action: () => Promise<void>) {
     setBusy(true);
     setMessage("");
@@ -238,11 +239,12 @@ export default function Admin() {
             >
               {label("Abmelden", "Sign out")}
             </button>
+            <AdminSecurity token={session.access_token} />
             {!allowed ? (
               <p role="alert">
                 {label(
-                  "Dieses Konto ist nicht für die Verwaltung freigeschaltet.",
-                  "This account does not have administrator access.",
+                  "Verwaltungszugriff gesperrt. Bestätige gegebenenfalls oben deinen Zwei-Faktor-Code. Nur freigeschaltete Konten erhalten Zugriff.",
+                  "Administrator access is locked. Verify your two-factor code above if enabled. Only approved accounts have access.",
                 )}
               </p>
             ) : (

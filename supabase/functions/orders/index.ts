@@ -1,3 +1,4 @@
+import { readLimitedBody, BodyTooLarge } from "./limits.ts";
 import { createClient } from "npm:@supabase/supabase-js@2.117.3";
 import { z } from "npm:zod@4.1.12";
 const text = (max: number) => z.string().trim().min(1).max(max);
@@ -35,13 +36,10 @@ const hash = async (s: string) =>
     .join("");
 Deno.serve(async (req: Request) => {
   const origin = req.headers.get("origin") || "";
-  const allowed = [
-    "https://svesve-alpha.vercel.app",
-    "https://sveafritzenkoetter.de",
-    "https://www.sveafritzenkoetter.de",
-  ];
+  const allowed = ["https://svesve-alpha.vercel.app"];
   const headers = {
     "Content-Type": "application/json",
+    "X-Content-Type-Options": "nosniff",
     "Cache-Control": "no-store",
     Vary: "Origin",
     ...(allowed.includes(origin)
@@ -62,11 +60,14 @@ Deno.serve(async (req: Request) => {
   if (!req.headers.get("content-type")?.startsWith("application/json"))
     return reply(415, { error: "JSON required" });
   try {
-    if (Number(req.headers.get("content-length")) > 32768)
-      return reply(413, { error: "Request too large" });
-    const raw = await req.text();
-    if (new TextEncoder().encode(raw).length > 32768)
-      return reply(413, { error: "Request too large" });
+    let raw: string;
+    try {
+      raw = await readLimitedBody(req);
+    } catch (error) {
+      if (error instanceof BodyTooLarge)
+        return reply(413, { error: "Request too large" });
+      throw error;
+    }
     let input;
     try {
       input = schema.parse(JSON.parse(raw));
@@ -135,15 +136,13 @@ Deno.serve(async (req: Request) => {
       items.push({ ...item, title: art.title, unitPrice: price.cents });
     }
     const total = items.reduce((s, i) => s + i.unitPrice * i.quantity, 0);
-    const insert = await db
-      .from("orders")
-      .insert({
-        id: input.requestId,
-        fingerprint,
-        customer: input.customer,
-        items,
-        total_cents: total,
-      });
+    const insert = await db.from("orders").insert({
+      id: input.requestId,
+      fingerprint,
+      customer: input.customer,
+      items,
+      total_cents: total,
+    });
     if (insert.error) {
       if (insert.error.code === "23505") {
         const r = await db

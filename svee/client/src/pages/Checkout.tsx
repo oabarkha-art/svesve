@@ -1,7 +1,7 @@
 import { supabaseUrl, supabaseKey, orderKey } from "@/lib/supabase";
 import { useCatalog } from "@/contexts/CatalogContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { inquiryLink } from "@/lib/contact";
+import { useContact } from "@/lib/useContact";
 import { useRef, useState, type FormEvent } from "react";
 import { Link } from "wouter";
 import Layout from "@/components/Layout";
@@ -9,6 +9,7 @@ import { useCart, itemKey } from "@/contexts/CartContext";
 import { money } from "@/data/artworks";
 import { orderSchema } from "../../../shared/orders";
 export default function Checkout() {
+  const { artistEmail, inquiryLink } = useContact();
   const { t } = useLanguage();
   const { artworks, printPrices, ready, error: catalogError } = useCatalog();
   const cart = useCart();

@@ -1,3 +1,4 @@
+import ContentManager from "@/components/ContentManager";
 import { useEffect, useState, type FormEvent } from "react";
 import type { Session } from "@supabase/supabase-js";
 import Layout from "@/components/Layout";
@@ -246,6 +247,7 @@ export default function Admin() {
               </p>
             ) : (
               <>
+                <ContentManager />
                 <section className="mb-12">
                   <h2 className="text-2xl mb-4">
                     {label("Print-Preise", "Print prices")}
@@ -337,6 +339,16 @@ export default function Admin() {
                           />
                         </label>
                       ))}
+                      <label className="md:col-span-2">
+                        {label("Beschreibung", "Description")}
+                        <textarea
+                          className="shop-input"
+                          value={draft.description}
+                          onChange={(e) =>
+                            setDraft({ ...draft, description: e.target.value })
+                          }
+                        />
+                      </label>
                       <label>
                         {label("Kategorie", "Category")}
                         <select

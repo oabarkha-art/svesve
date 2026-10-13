@@ -1,13 +1,15 @@
+import { useSiteSettings } from "@/contexts/SiteContentContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "wouter";
 import Layout from "@/components/Layout";
 export default function Home() {
+  const { image } = useSiteSettings();
   const { t } = useLanguage();
   return (
     <Layout>
       <section className="w-full">
         <img
-          src="/images/home-banner.webp"
+          src={image("home.banner")}
           alt=""
           width={2048}
           height={844}
@@ -50,7 +52,7 @@ export default function Home() {
           </p>
         </div>
         <img
-          src="/images/home-zonta.webp"
+          src={image("home.news")}
           alt={t(
             "Kinder am Fenster mit Blick auf L\xFCbecker Kirchen im Winter",
           )}
@@ -64,8 +66,8 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-6">
           <Link href="/malerei" className="group">
             <img
-              src="/images/painting-seerose.webp"
-              alt="Grüner Schnee"
+              src={image("home.painting")}
+              alt={t("Malerei")}
               loading="lazy"
               className="w-full aspect-[4/3] object-cover"
             />
@@ -75,13 +77,13 @@ export default function Home() {
           </Link>
           <Link href="/illustration" className="group">
             <img
-              src="/images/illustration-hasen.jpg"
-              alt="Unter Hasen"
+              src={image("home.illustration")}
+              alt={t("Illustration")}
               loading="lazy"
               className="w-full aspect-[4/3] object-cover"
             />
             <h3 className="text-3xl mt-4 group-hover:text-primary">
-              Illustration →
+              {t("Illustration →")}
             </h3>
           </Link>
         </div>

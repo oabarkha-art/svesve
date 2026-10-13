@@ -29,3 +29,11 @@ The security advisor reports two informational no-policy notices: `private.admin
 - Live API checks: 25 public works, anonymous read/write denial, persistence with server prices, idempotent retry, conflicting retry rejection, unknown artwork rejection.
 - Authenticated unapproved-role SQL check confirms no admin privileges or artwork updates.
 - First real admin login/upload must be checked after the owner creates their account.
+
+## Full website content management
+
+`site_content` stores the 109 active German/English text, homepage-image and contact/link fields. `books` stores the three initial books/series, bilingual descriptions, cover, up to four preview images, visibility and ordering. Both are protected by the existing admin allowlist and RLS. The admin page adds searchable text editing, image replacement, contact/link editing, and book creation/editing/hiding. Text is rendered as plain React text, never HTML. Executable image/link URLs are rejected; existing templates retain their placeholders.
+
+The initial fallback is in `client/src/data/siteContent.ts`; once loaded, database values drive the public pages. Admin saves reload the content without rebuilding/deploying. Existing open tabs refresh on window focus or page reload. Artist titles, dimensions, descriptions and pictures remain in the artwork editor. The fixed layout and icon designs are still code, not content fields.
+
+Verification: four new content tests pass (live-data rendering, English switch, book previews, placeholder/blank values, unsafe URL checks); existing 21 cases pass. The sandbox still hangs at Vitest shutdown, so bounded runs exit 124. TypeScript/build pass. SQL role checks verify confirmed-admin writes and non-admin denial with all test writes rolled back. The latest advisor additionally flags the project's disabled leaked-password protection setting; this is an Auth platform setting, not a new table/RLS finding: https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection

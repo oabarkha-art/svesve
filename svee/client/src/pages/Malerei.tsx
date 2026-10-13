@@ -1,8 +1,9 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import Layout from "@/components/Layout";
 import { useCatalog } from "@/contexts/CatalogContext";
-import { inquiryLink } from "@/lib/contact";
+import { useContact } from "@/lib/useContact";
 export default function Malerei() {
+  const { artistEmail, inquiryLink } = useContact();
   const { t } = useLanguage();
   const { artworks } = useCatalog();
   const paintings = artworks.filter(
@@ -66,14 +67,14 @@ export default function Malerei() {
                     )}
                   </div>
                   {artwork.sold ? (
-                    <p className="text-sm text-primary">(Sold)</p>
+                    <p className="text-sm text-primary">{t("(Sold)")}</p>
                   ) : (
                     <a
                       href={inquiryLink(`Request painting: ${artwork.title}`)}
                       aria-label={`Request painting: ${artwork.title}`}
                       className="text-primary underline underline-offset-4 text-sm"
                     >
-                      Request painting
+                      {t("Request painting")}
                     </a>
                   )}
                 </div>

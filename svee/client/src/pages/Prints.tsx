@@ -76,7 +76,7 @@ export default function Prints() {
     <Layout>
       <section className="container py-12 md:py-16">
         <p className="eyebrow">{t("Kunst f\xFCr dein Zuhause")}</p>
-        <h2 className="text-4xl md:text-5xl mb-5">Prints</h2>
+        <h2 className="text-4xl md:text-5xl mb-5">{t("Prints")}</h2>
         <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed">
           {" " +
             t(

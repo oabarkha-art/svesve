@@ -1,3 +1,4 @@
+import { useSiteContent } from "./SiteContentContext";
 import {
   createContext,
   useCallback,
@@ -13,12 +14,14 @@ export function translate(
   language: Language,
   text: string,
   values: Values = {},
+  overrides: Record<string, { de: string; en: string }> = {},
 ) {
   const normalized = text.replace(/\s+/g, " ").trim();
   const translated =
-    language === "en"
+    overrides[normalized]?.[language] ??
+    (language === "en"
       ? ((english as Record<string, string>)[normalized] ?? text)
-      : text;
+      : text);
   return translated.replace(/\{(\w+)\}/g, (match, key) =>
     String(values[key] ?? match),
   );
@@ -29,6 +32,7 @@ const LanguageContext = createContext({
   t: (text: string, values?: Values) => translate("de", text, values),
 });
 export function LanguageProvider({ children }: { children: ReactNode }) {
+  const { fields } = useSiteContent();
   const [language, setLanguage] = useState<Language>(() => {
     try {
       const requested = new URLSearchParams(window.location.search).get("lang");
@@ -50,18 +54,23 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     } catch {
       /* The switch also works without storage. */
     }
-    const description = document.querySelector('meta[name="description"]');
-    description?.setAttribute(
-      "content",
-      language === "en"
-        ? "Paintings and illustrations by Svea Fritzenkötter. Explore oil paintings, imaginary worlds and hand-signed prints."
-        : "Malerei und Illustration von Svea Fritzenkötter. Entdecke Ölgemälde, fantastische Welten und handsignierte Prints.",
-    );
   }, [language]);
   const t = useCallback(
-    (text: string, values?: Values) => translate(language, text, values),
-    [language],
+    (text: string, values?: Values) =>
+      translate(language, text, values, fields),
+    [language, fields],
   );
+  useEffect(() => {
+    document.title = t("Portfolio · Svea Fritzenkötter");
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute(
+        "content",
+        t(
+          "Malerei und Illustration von Svea Fritzenkötter. Entdecke Ölgemälde, fantastische Welten und handsignierte Prints.",
+        ),
+      );
+  }, [t]);
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
       {children}

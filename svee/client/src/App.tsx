@@ -1,3 +1,4 @@
+import { SiteContentProvider } from "./contexts/SiteContentContext";
 import { CatalogProvider } from "./contexts/CatalogContext";
 import Admin from "./pages/Admin";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -33,20 +34,22 @@ function Router() {
 
 function App() {
   return (
-    <LanguageProvider>
-      <ErrorBoundary>
-        <ThemeProvider defaultTheme="light">
-          <TooltipProvider>
-            <Sonner />
-            <CatalogProvider>
-              <CartProvider>
-                <Router />
-              </CartProvider>
-            </CatalogProvider>
-          </TooltipProvider>
-        </ThemeProvider>
-      </ErrorBoundary>
-    </LanguageProvider>
+    <SiteContentProvider>
+      <LanguageProvider>
+        <ErrorBoundary>
+          <ThemeProvider defaultTheme="light">
+            <TooltipProvider>
+              <Sonner />
+              <CatalogProvider>
+                <CartProvider>
+                  <Router />
+                </CartProvider>
+              </CatalogProvider>
+            </TooltipProvider>
+          </ThemeProvider>
+        </ErrorBoundary>
+      </LanguageProvider>
+    </SiteContentProvider>
   );
 }
 

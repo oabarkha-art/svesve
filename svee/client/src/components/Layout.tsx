@@ -1,6 +1,7 @@
+import { useSiteSettings } from "@/contexts/SiteContentContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import TikTokIcon from "@/components/TikTokIcon";
-import { inquiryLink } from "@/lib/contact";
+import { useContact } from "@/lib/useContact";
 import { Link, useLocation } from "wouter";
 import { Instagram } from "lucide-react";
 import Cart from "@/components/Cart";
@@ -30,6 +31,8 @@ const navLinks = [
   },
 ];
 export default function Layout({ children }: LayoutProps) {
+  const { link, value } = useSiteSettings();
+  const { artistEmail, inquiryLink } = useContact();
   const { t, language, setLanguage } = useLanguage();
   const [location] = useLocation();
   return (
@@ -42,7 +45,7 @@ export default function Layout({ children }: LayoutProps) {
             <Link href="/">
               <div>
                 <h1 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
-                  Svea Fritzenkötter
+                  {t("Svea Fritzenkötter")}
                 </h1>
                 <p className="text-xs text-muted-foreground mt-0.5 tracking-widest uppercase">
                   {" " + t("K\xFCnstlerin & Illustratorin") + " "}
@@ -121,21 +124,21 @@ export default function Layout({ children }: LayoutProps) {
                 {" " + t("E-Mail") + " "}
               </a>
               <a
-                href="https://www.instagram.com/svea_syy/"
+                href={link("contact.instagram")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-sm text-[#F8F7F3] hover:underline transition-colors"
               >
                 <Instagram size={16} />
-                Instagram
+                {t("Instagram")}
               </a>
               <a
-                href="https://www.tiktok.com/@sveasyy"
+                href={link("contact.tiktok")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center min-w-11 min-h-11"
-                aria-label="TikTok: @sveasyy"
-                title="TikTok: @sveasyy"
+                aria-label={t("contact.tiktok_label")}
+                title={t("contact.tiktok_label")}
               >
                 <TikTokIcon size={22} />
               </a>

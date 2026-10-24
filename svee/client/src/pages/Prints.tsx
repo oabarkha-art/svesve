@@ -44,7 +44,7 @@ function PrintCard({ artwork }: { artwork: Artwork }) {
         >
           {formats.map((size) => (
             <option key={size} value={size}>
-              {size} · {formatDimensions[size]} · {money(printPrices[size])}
+              {size} · {formatDimensions[size]}
             </option>
           ))}
         </select>
@@ -112,10 +112,6 @@ export default function Prints() {
         </div>
         <p className="text-sm text-muted-foreground mt-4" aria-live="polite">
           {visible.length}
-          {" · " +
-            formats
-              .map((size) => `${size} ${money(printPrices[size])}`)
-              .join(" · ")}
         </p>
         {catalogError && <p role="alert">{catalogError}</p>}
         <div className="gallery-grid">

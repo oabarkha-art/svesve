@@ -9,7 +9,7 @@ import Books from "../components/Books";
 const state = vi.hoisted(() => ({
   fields: [
     {
-      key: "Hi, ich bin Svea",
+      key: "Hey, ich bin Svea",
       section: "Home",
       kind: "text",
       de: "Mein neuer Startseitentext",
@@ -58,6 +58,7 @@ vi.mock("@/components/Layout", () => ({
   default: ({ children }: { children: React.ReactNode }) => <>{children}</>,
 }));
 beforeEach(() => {
+  localStorage.setItem("svea-language", "de");
   vi.stubGlobal("React", React);
 });
 afterEach(() => {

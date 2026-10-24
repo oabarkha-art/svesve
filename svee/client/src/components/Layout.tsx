@@ -103,16 +103,16 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Footer */}
       <footer className="border-t border-border bg-[#332626] text-[#F8F7F3] mt-16">
-        <div className="container py-10">
-          <p className="text-xl max-w-2xl mb-8 leading-relaxed">
+        <div className="container py-16 md:py-24 min-h-80">
+          <p className="text-sm max-w-xs mb-6 leading-relaxed">
             {" " +
               t(
                 "Wenn du mit mir zusammenarbeiten oder mehr von meiner Arbeit entdecken m\xF6chtest, schreib mir. Ich freue mich auf deine Nachricht.",
               ) +
               " "}
           </p>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-[#e2d4ce]">
+          <div className="flex flex-col-reverse items-start gap-8">
+            <p className="text-xs text-[#e2d4ce]">
               © {new Date().getFullYear()}
               {" " + t("Svea Fritzenk\xF6tter. Alle Rechte vorbehalten.") + " "}
             </p>
@@ -140,7 +140,8 @@ export default function Layout({ children }: LayoutProps) {
                 aria-label={t("contact.tiktok_label")}
                 title={t("contact.tiktok_label")}
               >
-                <TikTokIcon size={22} />
+                <TikTokIcon size={16} />{" "}
+                <span className="text-sm ml-2">TikTok</span>
               </a>
             </div>
           </div>

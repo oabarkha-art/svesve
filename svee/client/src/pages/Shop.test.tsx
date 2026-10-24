@@ -17,6 +17,7 @@ vi.mock("@/lib/supabase",()=>({supabase:null,supabaseUrl:"https://example.supaba
 
 beforeEach(() => {
   localStorage.clear();
+  localStorage.setItem("svea-language", "de");
   window.history.replaceState(null, "", "/prints");
   vi.stubGlobal("React", React);
   window.HTMLElement.prototype.scrollIntoView = vi.fn();

@@ -37,9 +37,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     try {
       const requested = new URLSearchParams(window.location.search).get("lang");
       const saved = requested || localStorage.getItem("svea-language");
-      return saved === "en" ? "en" : "de";
+      return saved === "de" ? "de" : "en";
     } catch {
-      return "de";
+      return "en";
     }
   });
   useEffect(() => {

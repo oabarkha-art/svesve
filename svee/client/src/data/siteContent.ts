@@ -761,7 +761,42 @@ export const initialContent = [
     "kind": "text",
     "de": "TikTok: @sveasyy",
     "en": "TikTok: @sveasyy"
-  }
+  },
+{
+  "key": "Hey, ich bin Svea",
+  "section": "Home",
+  "kind": "text",
+  "de": "Hey, ich bin Svea",
+  "en": "Hey, I’m Svea"
+},
+{
+  "key": "Schön, dass du hier bist!",
+  "section": "Home",
+  "kind": "text",
+  "de": "Schön, dass du hier bist!",
+  "en": "I’m so glad you’re here!"
+},
+{
+  "key": "Für meine Lübecker:innen ♡",
+  "section": "Home",
+  "kind": "text",
+  "de": "Für meine Lübecker:innen ♡",
+  "en": "For my Lübeck locals ♡"
+},
+{
+  "key": "Ab dem 20. Oktober ist der diesjährige Zonta Adventskalender mit meinem Motiv erhältlich.",
+  "section": "Home",
+  "kind": "text",
+  "de": "Ab dem 20. Oktober ist der diesjährige Zonta Adventskalender mit meinem Motiv erhältlich.",
+  "en": "From 20 October, this year’s Zonta Advent calendar featuring my illustration is available."
+},
+{
+  "key": "Sold",
+  "section": "Malerei",
+  "kind": "text",
+  "de": "Sold",
+  "en": "Sold"
+}
 ];
 export const initialBooks = [
   {

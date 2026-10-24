@@ -14,12 +14,12 @@ export default function Home() {
           width={2048}
           height={844}
           fetchPriority="high"
-          className="block w-full h-auto"
+          className="home-banner"
         />
         <div className="container">
           <div className="max-w-3xl py-8 md:py-12">
             <h2 className="text-4xl md:text-5xl font-medium mb-5">
-              {t("Hi, ich bin Svea")}
+              {t("Hey, ich bin Svea")}
             </h2>
             <p className="text-lg leading-relaxed">
               {" " +
@@ -28,25 +28,17 @@ export default function Home() {
                 ) +
                 " "}
             </p>
-            <p className="text-lg mt-4">{t("Sch\xF6n, dass du da bist!")}</p>
+            <p className="text-lg mt-4">{t("Schön, dass du hier bist!")}</p>
           </div>
         </div>
       </section>
-      <section className="container grid md:grid-cols-[1fr_2fr] gap-8 md:gap-12 items-center pb-12">
+      <section className="container flex flex-col gap-8 pb-12">
         <div>
-          <h3 className="text-2xl mb-4">{t("Aktuelles")}</h3>
+          <p className="mb-4">{t("Für meine Lübecker:innen ♡")}</p>
           <p className="text-lg leading-relaxed">
             {" " +
               t(
-                "F\xFCr meine L\xFCbecker:innen \u2661 Ab dem 20. Oktober ist der diesj\xE4hrige Zonta Adventskalender mit meinem Motiv erh\xE4ltlich.",
-              ) +
-              " "}
-          </p>
-          <h3 className="text-2xl mt-8 mb-4">{t("Zusammenarbeit")}</h3>
-          <p className="text-muted-foreground leading-relaxed">
-            {" " +
-              t(
-                "Einige meiner liebsten Kooperationen: Zonta Club \xB7 Johanniter \xB7 GEOMAR Helmholtz-Zentrum f\xFCr Ozeanforschung",
+                "Ab dem 20. Oktober ist der diesj\xE4hrige Zonta Adventskalender mit meinem Motiv erh\xE4ltlich.",
               ) +
               " "}
           </p>
@@ -61,6 +53,16 @@ export default function Home() {
           decoding="async"
           className="w-full h-auto"
         />
+        <div className="w-full">
+          <h3 className="text-2xl mt-8 mb-4">{t("Zusammenarbeit")}</h3>
+          <p className="text-muted-foreground leading-relaxed">
+            {" " +
+              t(
+                "Einige meiner liebsten Kooperationen: Zonta Club \xB7 Johanniter \xB7 GEOMAR Helmholtz-Zentrum f\xFCr Ozeanforschung",
+              ) +
+              " "}
+          </p>
+        </div>
       </section>
       <section className="container py-8 md:py-12">
         <div className="grid md:grid-cols-2 gap-6">

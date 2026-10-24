@@ -353,3 +353,22 @@
 @media (prefers-reduced-motion: reduce) {
   .book-teaser { transition: none; }
 }
+
+/* October portfolio revision: quiet typography and generous artwork spacing. */
+html { font-size: 15px; }
+.home-banner { display: block; width: 100%; height: clamp(170px, 25vw, 380px); object-fit: cover; object-position: center; }
+.painting-gallery { column-gap: 3.5rem; }
+.painting-gallery .artwork-card { margin-bottom: 4rem; padding: 0 .75rem; }
+.artwork-title { font-size: clamp(1.15rem, 2vw, 1.5rem); }
+.portrait-section { display: grid; gap: 3rem; align-items: center; }
+.portrait-image { width: 100%; max-width: 440px; height: auto; }
+.book-projects { display: flex; flex-direction: column; gap: 7rem; padding-bottom: 4rem; }
+.project-mockup { display: block; max-width: 550px; margin-bottom: 2rem; }
+.project-mockup img { width: 100%; height: auto; }
+.project-copy { max-width: 640px; margin-bottom: 2.5rem; }
+.project-illustrations { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; align-items: start; }
+.project-illustrations img { display: block; width: 100%; height: auto; }
+@media (min-width: 768px) {
+  .project-illustrations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .portrait-section { grid-template-columns: 1fr 1fr; gap: 5rem; }
+}

@@ -1,11 +1,8 @@
-import { useSiteSettings } from "@/contexts/SiteContentContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import TikTokIcon from "@/components/TikTokIcon";
 import { useContact } from "@/lib/useContact";
-import { Mail, Instagram } from "lucide-react";
+import { Mail } from "lucide-react";
 import Layout from "@/components/Layout";
 export default function Contact() {
-  const { link, value } = useSiteSettings();
   const { artistEmail, inquiryLink } = useContact();
   const { t } = useLanguage();
   return (
@@ -28,27 +25,6 @@ export default function Contact() {
           {artistEmail}
         </a>
         <p className="mt-8 text-muted-foreground">{t("Deutschland")}</p>
-        <div className="flex flex-wrap gap-6 mt-8">
-          <a
-            href={link("contact.instagram")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary"
-          >
-            <Instagram size={18} />
-            {t("contact.instagram_label")}
-          </a>
-          <a
-            href={link("contact.tiktok")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center min-w-11 min-h-11 text-primary"
-            aria-label={t("contact.tiktok_label")}
-            title={t("contact.tiktok_label")}
-          >
-            <TikTokIcon size={24} />
-          </a>
-        </div>
       </section>
     </Layout>
   );

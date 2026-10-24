@@ -30,6 +30,7 @@ describe("language selection", () => {
       ]),
     );
     render(<App />);
+    expect(document.documentElement.lang).toBe("en");
     fireEvent.change(screen.getByLabelText("Name"), {
       target: { value: "Alex" },
     });
